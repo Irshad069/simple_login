@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".home">
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/Htextview"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Main Screen"
+            android:gravity="center"
+            android:textSize="30dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            />
+        <ImageButton
+            android:id="@+id/Imgbutton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            android:src="@drawable/logout"
+            />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/layout"
+        android:gravity="center"
+        android:layout_marginTop="350dp"
+        android:text="welcome to our app"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:padding="3dp"
+        android:textColor="@color/black"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_button"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:text="delete account"
+        android:textSize="20dp"
+        android:padding="8dp"
+        />
+
+</RelativeLayout>
