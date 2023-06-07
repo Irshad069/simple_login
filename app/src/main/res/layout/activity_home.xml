@@ -34,19 +34,95 @@
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/Htext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/layout"
         android:gravity="center"
-        android:layout_marginTop="350dp"
-        android:text="welcome to our app"
+        android:layout_marginTop="150dp"
+        android:text="read data"
         android:textAllCaps="true"
         android:textStyle="bold"
         android:textSize="30dp"
         android:padding="3dp"
         android:textColor="@color/black"
         />
+
+    <EditText
+        android:id="@+id/Hedittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Htext"
+        android:layout_marginTop="80dp"
+        android:layout_marginHorizontal="50dp"
+        android:hint="enter your email"
+        android:paddingHorizontal="3dp"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_button"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/Hedittext"
+        android:layout_marginTop="50dp"
+        android:text="get data"
+        android:textSize="20dp"
+        android:padding="8dp"
+        />
+
+    <TextView
+        android:id="@+id/Htext1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/btn2"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="name"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:padding="3dp"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:id="@+id/Htext2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/Htext1"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="email"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:padding="3dp"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:id="@+id/Htext3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/Htext2"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="password"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:padding="3dp"
+        android:textColor="@color/black"
+        />
+
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn1"
