@@ -1,140 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/drawer_layout"
     android:background="@color/white"
+    android:fitsSystemWindows="true"
     tools:context=".home">
 
-    <RelativeLayout
-        android:id="@+id/layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        <TextView
-            android:id="@+id/Htextview"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Main Screen"
-            android:gravity="center"
-            android:textSize="30dp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            />
-        <ImageButton
-            android:id="@+id/Imgbutton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="30dp"
-            android:src="@drawable/logout"
-            />
+   <include
+       layout="@layout/home_deshboard"
+       android:layout_height="match_parent"
+       android:layout_width="match_parent"/>
 
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/Htext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/layout"
-        android:gravity="center"
-        android:layout_marginTop="150dp"
-        android:text="read data"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        android:textSize="30dp"
-        android:padding="3dp"
-        android:textColor="@color/black"
-        />
-
-    <EditText
-        android:id="@+id/Hedittext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/Htext"
-        android:layout_marginTop="80dp"
-        android:layout_marginHorizontal="50dp"
-        android:hint="enter your email"
-        android:paddingHorizontal="3dp"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn2"
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_button"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/Hedittext"
-        android:layout_marginTop="50dp"
-        android:text="get data"
-        android:textSize="20dp"
-        android:padding="8dp"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
         />
 
-    <TextView
-        android:id="@+id/Htext1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/btn2"
-        android:gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="name"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:padding="3dp"
-        android:textColor="@color/black"
-        />
-    <TextView
-        android:id="@+id/Htext2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/Htext1"
-        android:gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="email"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:padding="3dp"
-        android:textColor="@color/black"
-        />
-    <TextView
-        android:id="@+id/Htext3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/Htext2"
-        android:gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="password"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:padding="3dp"
-        android:textColor="@color/black"
-        />
-
-
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_button"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
-        android:text="delete account"
-        android:textSize="20dp"
-        android:padding="8dp"
-        />
-
-</RelativeLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

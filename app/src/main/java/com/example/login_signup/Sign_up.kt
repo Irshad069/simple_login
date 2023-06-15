@@ -18,8 +18,11 @@ class Sign_up : AppCompatActivity() {
     private lateinit var text1:EditText
     private lateinit var text2:EditText
     private lateinit var text3:EditText
+    private lateinit var text4:EditText
+    private lateinit var text5:EditText
     private lateinit var btnregister:Button
     private lateinit var Tsignin:TextView
+
 
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
@@ -35,6 +38,8 @@ class Sign_up : AppCompatActivity() {
         text1=findViewById(R.id.Stext1)
         text2=findViewById(R.id.Stext2)
         text3=findViewById(R.id.Stext3)
+        text4=findViewById(R.id.Stext4)
+        text5=findViewById(R.id.Stext5)
         btnregister=findViewById(R.id.Sbtn1)
         Tsignin=findViewById(R.id.textview2)
 
@@ -54,6 +59,8 @@ class Sign_up : AppCompatActivity() {
         var name=text1.text.toString()
         var email=text2.text.toString()
         var password=text3.text.toString()
+        var age=text4.text.toString()
+        var gender=text5.text.toString()
         if (name.isBlank()){
             Toast.makeText(this,"name required",Toast.LENGTH_SHORT).show()
             return
@@ -66,17 +73,27 @@ class Sign_up : AppCompatActivity() {
             Toast.makeText(this,"password required",Toast.LENGTH_SHORT).show()
             return
         }
+        if (age.isBlank()){
+            Toast.makeText(this,"age required",Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (gender.isBlank()){
+            Toast.makeText(this,"gender required",Toast.LENGTH_SHORT).show()
+            return
+        }
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener (this){
             if (it.isSuccessful){
                 intent= Intent(this,home::class.java)
                 startActivity(intent)
 
                 database= FirebaseDatabase.getInstance().getReference("users")
-                val user=user(name, email, password)
+                val user=user(name, email, password,age, gender)
                 database.child(name).setValue(user).addOnSuccessListener {
                     text1.text.clear()
                     text2.text.clear()
                     text3.text.clear()
+                    text4.text.clear()
+                    text5.text.clear()
                     Toast.makeText(this,"data saved",Toast.LENGTH_SHORT).show()
                 } .addOnFailureListener {
                     Toast.makeText(this,"failed",Toast.LENGTH_SHORT).show()
