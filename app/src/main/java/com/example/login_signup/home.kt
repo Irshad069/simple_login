@@ -39,7 +39,6 @@ class home : AppCompatActivity()  {
     private lateinit var textview3:TextView
     private lateinit var textview4:TextView
     private lateinit var textview5:TextView
-    private lateinit var btndelete:Button
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
     val user=FirebaseAuth.getInstance().currentUser
@@ -53,11 +52,7 @@ class home : AppCompatActivity()  {
         database = Firebase.database.reference
         auth=FirebaseAuth.getInstance()
 
-
-
-
         drawer=findViewById(R.id.drawerbutton)
-        btndelete=findViewById(R.id.btn1)
         text=findViewById(R.id.Htext)
         edit=findViewById(R.id.Hedittext)
         getbtn=findViewById(R.id.btn2)
@@ -80,20 +75,37 @@ class home : AppCompatActivity()  {
         navView.setNavigationItemSelectedListener {
 
             when (it.itemId) {
-                R.id.nav_home -> Toast.makeText(this, "Clicked Home", Toast.LENGTH_SHORT).show()
-                R.id.nav_message -> Toast.makeText(this, "Clicked message", Toast.LENGTH_SHORT)
-                    .show()
+                R.id.nav_home -> {
+                    intent = Intent(this,home::class.java)
+                    startActivity(intent)
+                }
+                R.id.nav_message -> {
+                    intent = Intent(this,send_message::class.java)
+                    startActivity(intent)
+                }
 
                 R.id.nav_sync -> Toast.makeText(this, "Clicked sync", Toast.LENGTH_SHORT).show()
-                R.id.nav_delete -> Toast.makeText(this, "Clicked delete", Toast.LENGTH_SHORT).show()
+                R.id.nav_delete -> {
+                    if (user != null) {
+                        user.delete()
+                        intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                }
                 R.id.nav_setting -> Toast.makeText(this, "Clicked setting", Toast.LENGTH_SHORT)
                     .show()
 
-                R.id.nav_login -> Toast.makeText(this, "Clicked login", Toast.LENGTH_SHORT).show()
+                R.id.nav_login -> {
+                        intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+
+                }
                 R.id.nav_logout ->  {
                     auth.signOut()
                     intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)}
+
                 R.id.nav_share -> Toast.makeText(this, "Clicked share", Toast.LENGTH_SHORT).show()
                 R.id.nav_rate -> Toast.makeText(this, "Clicked rate", Toast.LENGTH_SHORT).show()
             }
@@ -110,16 +122,6 @@ class home : AppCompatActivity()  {
             }
         }
 
-        btndelete.setOnClickListener {
-            if (user != null) {
-                user.delete()
-                intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-
-
-        }
         drawer.setOnClickListener {
          if (! drawerLayout.isDrawerOpen(GravityCompat.START)){
          drawerLayout.openDrawer(GravityCompat.START)
