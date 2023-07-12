@@ -5,5 +5,10 @@ open class user (
     val email: String?=null,
     val password:String?=null,
     val age:String?=null,
-    val gender:String?=null
-    )
+    val gender:String?=null,
+    val uid : String?=null,
+    val imageUrl : String?=null
+    ) {
+    fun delete() { TODO("Not yet implemented")
+    }
+}

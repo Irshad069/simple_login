@@ -11,6 +11,7 @@
     android:background="@color/white"
     >
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileimg"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
@@ -23,7 +24,7 @@
         android:id="@+id/user_name"
         android:gravity="center"
         android:paddingTop="8dp"
-        android:text="irshad khan"
+        android:text="irshad "
         android:textSize="20dp"
         android:textStyle="bold|italic"
         android:textColor="@color/black"
@@ -34,7 +35,7 @@
         android:id="@+id/user_email"
         android:gravity="center"
         android:paddingTop="8dp"
-        android:text="irshadkhan455@gmail.com"
+        android:text="abc@gmail.com"
         android:textSize="20dp"
         android:textStyle="bold|italic"
         android:textColor="@color/black"

@@ -3,9 +3,12 @@ package com.example.login_signup
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Configuration
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.UserHandle
 import android.view.MenuItem
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -18,10 +21,15 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import de.hdodenhof.circleimageview.CircleImageView
+import java.io.File
 import java.lang.Exception
 
 class home : AppCompatActivity()  {
@@ -41,16 +49,26 @@ class home : AppCompatActivity()  {
     private lateinit var textview5:TextView
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
-    val user=FirebaseAuth.getInstance().currentUser
+    private lateinit var user: user
     private lateinit var drawerLayout:DrawerLayout
+    private lateinit var uid: String
+   // private lateinit var storageReference: DatabaseReference
+    private lateinit var username: TextView
+    private lateinit var useremail: TextView
+    private lateinit var uname: String
+    private lateinit var profileimage: CircleImageView
+//    private lateinit var storageReference:FirebaseStorage
+
 
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        database = Firebase.database.reference
+        database = FirebaseDatabase.getInstance().getReference("users")
         auth=FirebaseAuth.getInstance()
+        uid = auth.currentUser?.uid.toString()
+
 
         drawer=findViewById(R.id.drawerbutton)
         text=findViewById(R.id.Htext)
@@ -65,6 +83,17 @@ class home : AppCompatActivity()  {
 
         drawerLayout  = findViewById(R.id.drawer_layout)
         val navView : NavigationView = findViewById(R.id.nav_view)
+        val headerView: View = navView.getHeaderView(0)
+        username=headerView.findViewById(R.id.user_name)
+        useremail=headerView.findViewById(R.id.user_email)
+        profileimage=headerView.findViewById(R.id.profileimg)
+
+
+
+        if (uid.isNotEmpty()){
+            getUserData()
+            getUserProfile()
+        }
 
 
         togggle = ActionBarDrawerToggle(this,drawerLayout, R.string.open,R.string.close)
@@ -76,8 +105,7 @@ class home : AppCompatActivity()  {
 
             when (it.itemId) {
                 R.id.nav_home -> {
-                    intent = Intent(this,home::class.java)
-                    startActivity(intent)
+
                 }
                 R.id.nav_message -> {
                     intent = Intent(this,send_message::class.java)
@@ -93,14 +121,11 @@ class home : AppCompatActivity()  {
                         finish()
                     }
                 }
-                R.id.nav_setting -> Toast.makeText(this, "Clicked setting", Toast.LENGTH_SHORT)
-                    .show()
-
-                R.id.nav_login -> {
-                        intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-
+                R.id.nav_setting -> {
+                    intent = Intent(this,profile::class.java)
+                    startActivity(intent)
                 }
+
                 R.id.nav_logout ->  {
                     auth.signOut()
                     intent = Intent(this, MainActivity::class.java)
@@ -133,6 +158,43 @@ class home : AppCompatActivity()  {
 
 
 
+    }
+
+    private fun getUserData() {
+        database = FirebaseDatabase.getInstance().getReference("users")
+        database.child(uid).get().addOnSuccessListener{
+
+            if (it.exists()){
+                try {
+                    val name = it.child("name").value
+                    val email = it.child("email").value
+                   // val password = it.child("imageUrl").value
+                    Toast.makeText(this, "successfully get data", Toast.LENGTH_SHORT).show()
+                    edit.text.clear()
+                    username.text = username.toString()
+                    useremail.text = useremail.toString()
+                   // profileimage. = profileimage.toString()
+                }catch (e:Exception){
+
+                }
+
+            }else{
+                Toast.makeText(this,"user does't exist",Toast.LENGTH_SHORT).show()
+            }
+        }.addOnFailureListener {
+            Toast.makeText(this,"failed",Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun getUserProfile() {
+//       storageReference.reference.child("profile/ $uid")
+//        val localFile = File.createTempFile("tempimage","jpg")
+//        storageReference.reference.getFile(localFile).addOnSuccessListener {
+//            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+//            profileimage.setImageBitmap(bitmap)
+//        }.addOnFailureListener{
+//            Toast.makeText(this,"Failed to Retrive Image",Toast.LENGTH_SHORT).show()
+//        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
